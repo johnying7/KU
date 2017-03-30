@@ -1,0 +1,79 @@
+import static java.lang.Math.pow;
+
+public class Matrix{
+	
+	int n;
+	double[][] mdata = new double[10][10] ;
+	
+	//initializes the new size of the matrix
+	Matrix(int _n)
+	{
+		n = _n;
+		mdata = new double[n][n];
+	}
+	
+	//finds the determinant of the 2d matrix
+	double determinant(){
+		double det = 0.0;
+		
+		if(n == 1)
+		{
+			det = mdata[0][0];
+		}
+		else if (n == 2)
+		{
+			det = mdata[0][0] * mdata[1][1] - mdata[0][1] * mdata[1][0];
+		}
+		else
+		{
+			for (int i = 0; i < n; ++i)
+			{
+				det += pow(-1.0, (double)i) * mdata[0][i] * subMatrix(0, i).determinant();
+			}
+		}
+		
+		return det;
+	}
+	
+	//produces the inverse of the matrix
+	Matrix inverse(){
+		//the second iteration of the commit updates
+		Matrix inv = new Matrix(n);
+		double det = determinant();
+		
+		for (int i = 0; i < n; ++i)
+		{
+			for (int j = 0; j < n; ++j)
+			{
+				inv.mdata[i][j] = pow(-1.0, (double)i + j) * subMatrix(j, i).determinant() / det;
+			}
+		}
+		
+		return inv;
+	}
+	
+	//takes a portion of the original matrix and returns that
+	Matrix subMatrix(int r, int c)
+	{
+		Matrix sub = new Matrix(n-1);
+		
+		
+		int row = 0;
+		for(int i = 0; i < n; ++i)
+		{
+			if(i == r) continue;
+			
+			int col = 0;
+			for (int j = 0; j < n; ++j)
+			{
+				if (j == c) continue;
+				sub.mdata[row][col] = mdata[i][j];
+				++col;
+			}
+			
+			++row;
+		}
+		return sub;
+	}
+	
+}
