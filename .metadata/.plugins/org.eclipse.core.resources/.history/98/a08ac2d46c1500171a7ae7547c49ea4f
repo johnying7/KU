@@ -1,0 +1,32 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class MatrixTest {
+
+	int n;
+	double[][] mdata = new double[10][10] ;
+	
+	@Test
+	public void testMatrix(5) {
+		n = _n;
+		mdata = new double[n][n];
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDeterminant() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testInverse() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSubMatrix() {
+		fail("Not yet implemented");
+	}
+
+}

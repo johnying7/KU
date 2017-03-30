@@ -1,0 +1,78 @@
+package testing;
+import static java.lang.Math.pow;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class MatrixTest {
+
+	int n;
+	double[][] mdata = new double[3][3] ;
+	
+	@Test
+	public void testMatrix() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public double testDeterminant() {
+		
+		double[][] matrix = new double[3][3];
+		
+		matrix[0][0] = 5;
+		matrix[0][1] = 4;
+		matrix[0][2] = 3;
+		matrix[1][0] = 6;
+		matrix[1][1] = 9;
+		matrix[1][2] = 1;
+		matrix[2][0] = 2;
+		matrix[2][1] = 5;
+		matrix[2][2] = 3;
+		
+		assertEquals(82.0, Lab07.matrix.determinant(3,matrix),0.001);
+		//fail("Not yet implemented");
+	}
+
+	@Test
+	public Matrix testInverse() {
+		Matrix inv = new Matrix(n);
+		double det = testDeterminant();
+		
+		for (int i = 0; i < n; ++i)
+		{
+			for (int j = 0; j < n; ++j)
+			{
+				inv.mdata[i][j] = pow(-1.0, (double)i + j) * testSubMatrix(j, i).determinant() / det;
+			}
+		}
+		
+		return inv;
+		
+		//fail("Not yet implemented");
+	}
+
+	@Test
+	public Matrix testSubMatrix(int r, int c) {
+		Matrix sub = new Matrix(n-1);
+		
+		
+		int row = 0;
+		for(int i = 0; i < n; ++i)
+		{
+			if(i == r) continue;
+			
+			int col = 0;
+			for (int j = 0; j < n; ++j)
+			{
+				if (j == c) continue;
+				sub.mdata[row][col] = mdata[i][j];
+				++col;
+			}
+			
+			++row;
+		}
+		return sub;
+		//fail("Not yet implemented");
+	}
+
+}
