@@ -1,0 +1,23 @@
+public class Matrix(){
+	
+	int n;
+	double[][] mdata = new[10][10] ;
+	
+	public double Matrix(int _n)
+	{
+		n = _n;
+	}
+	
+	double determinant(){
+		
+	}
+	
+	void inverse(){
+		
+	}
+	
+	void subMatrix(int r, int c)
+	{
+		
+	}
+}
