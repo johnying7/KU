@@ -49,8 +49,27 @@ public class Matrix(){
 		return inv;
 	}
 	
+	//takes a portion of the original matrix and returns that
 	Matrix subMatrix(int r, int c)
 	{
+		Matrix sub(n-1);
 		
+		
+		int row = 0;
+		for(int i = 0; i < n; ++i)
+		{
+			if(i == r) continue;
+			
+			int col = 0;
+			for (int j = 0; j < n; ++j)
+			{
+				if (j == c) continue;
+				sub.mdata[row][col] = mdata[i][j];
+				++col;
+			}
+			
+			++row;
+		}
+		return sub;
 	}
 }
