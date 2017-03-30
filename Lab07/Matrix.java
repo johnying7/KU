@@ -32,11 +32,24 @@ public class Matrix(){
 		return det;
 	}
 	
-	void inverse(){
+	//produces the inverse of the matrix
+	Matrix inverse(){
 		//the second iteration of the commit updates
+		Matrix inv(n);
+		double det = determinant();
+		
+		for (int i = 0; i < n; ++i)
+		{
+			for (int j = 0; j < n; ++j)
+			{
+				inv.mdata[i][j] = pow(-1.0, (double)i + j) * subMatrix(j, i).determinant() / det;
+			}
+		}
+		
+		return inv;
 	}
 	
-	void subMatrix(int r, int c)
+	Matrix subMatrix(int r, int c)
 	{
 		
 	}
