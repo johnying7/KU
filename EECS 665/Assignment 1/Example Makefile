@@ -1,0 +1,37 @@
+STUDENT_ID=j901y365
+LAB_NAME=doubly-linked-list-lab-1
+GCC=g++
+CFLAGS=-Wall -g -pedantic --std=c++11
+
+FILES=Makefile main.cpp node.cpp node.hpp list.hpp list.cpp util.cpp util.hpp data.txt
+OBJECTS=main.o list.o util.o node.o
+
+ARCHIVE_FOLDER=$(STUDENT_ID)-$(LAB_NAME)
+
+build: list util node main
+	$(GCC) $(CFLAGS) -o main list.o util.o node.o main.o
+
+test:
+	./main
+
+util:
+	$(GCC) $(CFLAGS) -c util.cpp -o util.o
+
+list: node
+	$(GCC) $(CFLAGS) -c list.cpp -o list.o
+
+node:
+	$(GCC) $(CFLAGS) -c node.cpp -o node.o
+
+main:
+	$(GCC) $(CFLAGS) -c main.cpp -o main.o
+
+clean:
+	rm -rf main *.o rm $(ARCHIVE_FOLDER) $(ARCHIVE_FOLDER).tar.gz
+
+tar:
+	make clean
+	mkdir $(ARCHIVE_FOLDER)
+	cp -r $(FILES) $(ARCHIVE_FOLDER)
+	tar cvzf $(ARCHIVE_FOLDER).tar.gz $(ARCHIVE_FOLDER)
+	rm -rf $(ARCHIVE_FOLDER)
